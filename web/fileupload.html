@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>文件上传</title>
+	</head>
+	
+	<body>
+		<h3>文件上传</h3>
+			文件上传模块可以用于上传文件到<b>指定的目录</b>，这里上传到根目录下的 /upload 目录。
+		<br/><br/>
+		<form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
+			<input type="file" name="file1" >
+			<input type="submit" name="submit" value="上传">
+		</form>
+		<br/>
+		<a href="/upload/">点击浏览上传文件的目录</a>
+		<br/><br/>
+	</body>
+</html>

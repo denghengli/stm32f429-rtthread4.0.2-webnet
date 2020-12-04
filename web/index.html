@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用户登录</title>
+		<style type="text/css">
+			label{
+				font: 20px/30px "微软雅黑";
+				text-align: center;
+			}
+			.input1{
+				font: 15px/30px "微软雅黑";
+			}
+		</style>
+		
+		<script type="text/javascript">
+		function check(form)
+		{
+			var a = form.username.value;
+			var b = form.password.value;
+			
+		    if (a != "admin")
+		    {
+		    	alert("User name error,Please input correct user name!");
+		    }
+		    else
+		    {
+		    	if (b != "admin")
+		    	{
+		    		alert("Pass word error,Please input correct pass word!");
+		    	}
+		    	else
+		    	{
+		    		form.submit();
+		    	}
+		    }
+	    }
+		</script>
+	</head>
+	
+	<body>
+		<center>
+		<h2>用户登录</h2>
+		<form name="login" action="/cgi-bin/login" method="post" style="background-color: antiquewhite; width: 20%;">
+			<br />
+			<label>用&nbsp户&nbsp名：</label>
+			<input type="text" name="username" id="" value="admin" />
+			<br /><br />
+
+			<label>密&nbsp &nbsp &nbsp码：</label>
+			<input type="password" name="password" id="" value="admin" />
+			<br /><br />
+			
+			<input type="button" name="login" id="" style="position:absolute; left:48%;" value="登录" onclick="check(form)"/>&nbsp &nbsp &nbsp
+			<input type="reset"  name="reset" id="" style="position:absolute; left:52%;" value="重置" /><br /><br />
+		</form>
+		</center>
+	</body>
+</html>

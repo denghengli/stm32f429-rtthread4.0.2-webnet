@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>lwip_web</title>
+	</head>
+	
+	<!--
+		1、框架集和内联框架的作用类似，都是用于在一个页面中引入其他的外白页面
+		框架集可以同时引入多个页面，而内联框架只能引入一个，在h5中推荐使用框架集
+		
+		2、frameset标签：使用frameset来创建一个框架集，注意frameset不能和body出现在同一个页面中
+		有了frameset页面中就可以使用body标签,可以嵌套使用
+			属性：
+				rows：指定框架集中的所有的框架，一行一行的排列
+				cols：指定框架集中的所有的框架，一列一列的排列
+		3、frame标签：在frameset中使用frame子标签来指定要引入的页面,要引入几个就写几个frame				
+	-->
+	<frameset rows="140px,*">
+		<frame src="/frame_top.html" name="top_frame" noresize="noresize" />
+		<frameset cols="220px,*">
+			<frame src="/frame_table.html" name="left_frame" noresize="noresize" />
+			<frame src="/devinfo.shtml" name="right_frame" noresize="noresize" />
+		</frameset>
+	</frameset>
+	
+</html>
+	
+	

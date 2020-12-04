@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>以太网IP地址</title>
+		<style type="text/css">
+			.css1{
+				color: #eeeeee;
+				font: bold 20px/40px "微软雅黑";/*50px/100pxpx 表示是大小为100px，行高;*/
+				text-transform: uppercase;/*将元素中的字母全部变成大写*/
+				text-decoration: underline;/*在文本的下方添加线条*/
+				text-align: left;/*设置文本的对齐方式*/
+				/*text-indent: 2em;/*首行缩进,一般使用em作为单位*/
+				/*letter-spacing: 10px;/*设置字符之间的间距*/
+				/*word-spacing: 20px;/*设置单词之间的间距*/
+			}
+			.font1{font: bold 30px/40px "微软雅黑";}
+			.font2{font: 20px/30px "微软雅黑";}
+		</style>
+		
+		<script type="text/javascript" language="javascript">
+			/*form表单的onsubmit事件，当提交表单时执行*/
+			function save(form)
+			{
+				form.submit();
+				javascript:history.go(-1);
+				return false;
+			}
+			/*checkbox的点击事件,选中 启用DHCP 后,下面三项失能*/
+			function update()
+			{
+				if (document.getElementById("eth_dhcp").checked == true)
+				{
+					document.getElementById("eth_ipaddr").disabled = true;
+					document.getElementById("eth_gw").disabled = true;
+					document.getElementById("eth_mask").disabled = true;
+				}
+				else
+				{
+					document.getElementById("eth_ipaddr").disabled = false;
+					document.getElementById("eth_gw").disabled = false;
+					document.getElementById("eth_mask").disabled = false;
+				}
+			} 
+			/*window.onload() 方法用于在网页加载完毕后立刻执行的操作，即当 HTML文档加载完毕后，立刻执行某个方法。*/
+			window.onload = function valueload()
+			{
+				/*document对象中有innerHTML、innerText这两个属性，都是获取document对象文本内容
+					innerHTML设置或获取标签所包含的HTML+文本信息(从标签起始位置到终止位置全部内容，包括HTML标签，但不包括自身)
+					innerText设置或获取标签所包含的文本信息（从标签起始位置到终止位置的内容，去除HTML标签，但不包括自身）*/
+				document.getElementById("eth_ipaddr").value = document.getElementById("eth_ipaddr_value").innerText;
+				document.getElementById("eth_gw").value = document.getElementById("eth_gw_value").innerText;
+				document.getElementById("eth_mask").value = document.getElementById("eth_mask_value").innerText;
+				document.getElementById("eth_dns").value = document.getElementById("eth_dns_value").innerText;
+
+				var a = document.getElementById("eth_dhcp_value").innerText;
+				if(a == "1")
+				{
+					document.getElementById("eth_dhcp").checked = true;
+					update();
+				}
+			} 
+		</script>
+	</head>
+	
+	<body>
+		<!-- 
+		<p class="css1">以太网IP地址</p>
+		<a class="css1" href="javascript:history.go(-1);">Go back to root</a>
+		-->
+		<!--实现提交表单后不刷新页面的效果-->
+		<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+		
+		<!-- <form action="cgi-bin/ethip" method="post" onsubmit="return save(form);">-->
+		<form action="cgi-bin/ethip" method="post" target="nm_iframe">
+		<center>
+			<table border="0" width="40%" bordercolor="#000000" bgcolor="#eeeeee">
+				<!--标题-->
+				<tr>
+					<th height="50" colspan="2"><div align="center"><span class="font1">以太网IP设置</span></div><hr /></th>
+				</tr>
+				<!--IP地址-->
+				<tr>
+					<td width="42%" height="30"><div align="right"><span class="font2">IP 地址:</span></div></td>
+					<td width="58%" height="30"><div align="left"><span class="font2">
+						<input type="text" name="eth_ipaddr" id="eth_ipaddr" maxlength="15"/></span></div></td>
+				</tr>
+				<h1 style="display:none" id="eth_ipaddr_value"><!--#include virtual="eth_ipaddr_value" --></h1>
+				
+				<!--网关地址-->
+				<tr>
+					<td ><div align="right"><span class="font2">网关地址:</span></div></td>
+					<td ><div align="left"><span class="font2">
+						<input type="text" name="eth_gw" id="eth_gw" maxlength="15"/></span></div></td>
+				</tr>
+				<h1 style="display:none" id="eth_gw_value"><!--#include virtual="eth_gw_value" --></h1>
+				
+				<!--子网掩码-->
+				<tr>
+					<td ><div align="right"><span class="font2">子网掩码:</span></div></td>
+					<td ><div align="left"><span class="font2">
+						<input type="text" name="eth_mask" id="eth_mask" maxlength="15"/></span></div></td>
+				</tr>
+				<h1 style="display:none" id="eth_mask_value"><!--#include virtual="eth_mask_value" --></h1>
+				
+				<!--DNS服务器-->
+				<tr>
+					<td ><div align="right"><span class="font2">DNS服务器:</span></div></td>
+					<td ><div align="left"><span class="font2">
+						<input type="text" name="eth_dns" id="eth_dns" maxlength="15"/></span></div></td>
+				</tr>
+				<h1 style="display:none" id="eth_dns_value"><!--#include virtual="eth_dns_value" --></h1>
+				
+				<!--启用DHCP-->
+				<tr>
+					<td colspan="2"><div align="center"><span class="font2">
+						<input type="checkbox" name="eth_dhcp" id="eth_dhcp" value="1" maxlength="15" onclick="update()" />启用DHCP</span></div></td>
+				</tr>			
+				<h1 style="display:none" id="eth_dhcp_value"><!--#include virtual="eth_dhcp_value" --></h1>
+				
+				<!--保存-->
+				<tr>
+					<td colspan="2"><div align="center"><span class="font2">
+						<input type="submit" name="btn_save" id="btn_save" class="font2" value="保存" /></span></div></td>
+				</tr>
+				
+			</table>
+		</center>
+		</form>
+	</body>
+	
+</html>

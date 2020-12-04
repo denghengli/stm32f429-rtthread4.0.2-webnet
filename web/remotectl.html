@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>远程控制</title>
+		<style type="text/css">
+			.font1{font: bold 30px/40px "微软雅黑";}
+			.font2{font: 20px/30px "微软雅黑";}
+		</style>
+	</head>
+	
+	<body>
+		<!--实现提交表单后不刷新页面的效果-->
+		<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+		
+		<form action="/cgi-bin/remotectl" method="post" target="nm_iframe">
+		<center>
+			<table border="0" width="40%" bordercolor=""#000000"" bgcolor="#eeeeee">
+				<tr>
+					<th height="70" colspan="4"><div align="center"><span class="font1">远程控制</span></div></th>
+				</tr>
+				
+				<!--LED1-->
+				<tr>
+					<td width="25%" height="70"><div align="center"><span class="font2">LED1控制:</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="radio" name="led1" id="led1_on" value="1"/>亮</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="radio" name="led1" id="led1_off" value="0"/>灭</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="submit" name="led_ok" id="led_ok" value="确认"/></span></div></td>
+				</tr>
+				
+				<!--BEEP-->
+				<tr>
+					<td width="25%" height="70"><div align="center"><span class="font2">蜂鸣器控制:</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="radio" name="beep" id="beep_on" value="1"/>开</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="radio" name="beep" id="beep_off" value="0"/>关</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="submit" name="beep_ok" id="beep_ok" value="确认"/></span></div></td>
+				</tr>
+				
+				<!--继电器-->
+				<tr>
+					<td width="25%" height="70"><div align="center"><span class="font2">继电器控制:</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="radio" name="relay" id="relay_on" value="1"/>开</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="radio" name="relay" id="relay_off" value="0"/>关</span></div></td>
+					<td width="25%" height="70"><div align="center"><span class="font2">
+						<input type="submit" name="relay_ok" id="relay_ok" value="确认"/></span></div></td>
+				</tr>
+				
+			</table>
+		</center>
+		</form>
+	</body>
+</html>

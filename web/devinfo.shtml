@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>设备信息</title>
+		<style type="text/css">
+			h2{
+				font: bold 20px/2px "微软雅黑";
+				/*background-color: yellow;*/
+			}
+			table{
+				width: 100%;
+				/*height: 100px;*/
+				background-color: #eeeeee;
+				/*border: 3px solid black;/*设置边框为黑色加粗*/
+			}
+			.td_left{
+				width: 16%;
+				height: 40px;
+				color: white;
+				text-align: right;
+				font: bold 15px/100% "微软雅黑";
+				border: none;/*设置边框为黑色加粗*/
+				background-color: #7c7369;
+			}
+			.td_right{
+				height: 40px;
+				text-align: center;
+				border: 1px solid white;/*设置边框为黑色加粗*/
+				/*border-collapse: collapse;/*设置表格的边框合并*/ 
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h2>设备信息：</h2>
+		<table>
+			<tr>
+				<td class="td_left">设备型号：</td>
+				<td class="td_right">核心板：180_CORE_V01 <br /> 底板：180_BOT_V03</td>
+			</tr>
+			<tr>
+				<td class="td_left">固件版本：</td>
+				<td class="td_right"><!--#include virtual="soft_ver" --></td>
+			</tr>
+			<tr>
+				<td class="td_left">以太网IP地址：</td>
+				<td class="td_right"><!--#include virtual="eth_ipaddr_value" --></td>
+			</tr>
+			<tr>
+				<td class="td_left">MQTT服务器：</td>
+				<td class="td_right"><!--#include virtual="mqtt_name" --></td>
+			</tr>
+			<tr>
+				<td class="td_left">MQTT服务端口：</td>
+				<td class="td_right"><!--#include virtual="mqtt_port" --></td>
+			</tr>
+			
+			<tr>
+				<td class="td_left">主控单元：</td>
+				<td class="td_right">STM32F429IGT6，最高主频180MHZ</td>
+			</tr>
+			<tr>
+				<td class="td_left">外扩SDRAM：</td>
+				<td class="td_right">MT48LC16M16A2，存储容量为256MByte</td>
+			</tr>
+			<tr>
+				<td class="td_left">外扩NAND：</td>
+				<td class="td_right">K9F2G08U0CPIB，存储容量为256MByte</td>
+			</tr>
+			<tr>
+				<td class="td_left">外扩E2PROM：</td>
+				<td class="td_right">AT24C02，存储容量为256Byte</td>
+			</tr>
+			<tr>
+				<td class="td_left">外扩SPI FLASH：</td>
+				<td class="td_right">W25Q64，存储容量为8MByte</td>
+			</tr>
+		</table>
+		
+		<h2>板卡概览：</h2>
+		<img src="img/180board.png" alt="180.png"/>
+
+	</body>
+</html>

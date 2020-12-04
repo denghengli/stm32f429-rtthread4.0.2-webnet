@@ -1,0 +1,20 @@
+
+{
+  "Application": {
+    "Name": "CubeMX_Config",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "AvailableColorDepths": [ 16 ],
+    "AvailableLCDs":
+    {
+      "16": "LCD16bpp"
+    },
+    "AvailableResolutions" : [
+      {
+        "Width": 800,
+        "Height": 480
+      }
+    ],
+    "PostGenerateTargetCommand" : "touchgfx update_project --project-file=../CubeMX_Config.ioc --platform=m4"
+  },
+  "Version": "4.14.0"
+}

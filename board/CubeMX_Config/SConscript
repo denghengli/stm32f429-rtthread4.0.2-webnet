@@ -1,0 +1,55 @@
+import os
+import rtconfig
+from building import *
+
+cwd = GetCurrentDir()
+
+# add general drivers
+src = Split('''
+Src/touchgfx_sample.c
+Src/OSWrappers-rtt.cpp
+Src/STM32DMA.cpp
+Src/STM32TouchController.cpp
+Src/TouchGFXGPIO.cpp
+Src/TouchGFXConfiguration.cpp
+Src/TouchGFXGeneratedHAL.cpp
+Src/TouchGFXHAL.cpp
+Src/app_touchgfx.c
+''')
+
+path =  [cwd + '/Src']
+path += [cwd + '/Middlewares/ST/touchgfx/framework/include']
+
+
+if rtconfig.CROSS_TOOL == 'gcc':
+    src += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m4f/gcc/libtouchgfx.a']
+elif rtconfig.CROSS_TOOL == 'keil':
+    src += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m4f/Keil/touchgfx_core.lib']
+elif rtconfig.CROSS_TOOL == 'iar':
+    src += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m4f/IAR8.x/touchgfx_core.a']
+
+group = DefineGroup('TouchGFX_app', src, depend = [''], CPPPATH = path)
+
+# add TouchGFX generated
+genSrc = Glob('./Src/generated/fonts/src/*.cpp')
+genSrc += Glob('./Src/generated/gui_generated/src/*/*.cpp')
+genSrc += Glob('./Src/generated/images/src/*.cpp')
+genSrc += Glob('./Src/generated/texts/src/*.cpp')
+genPath = [cwd + '/Src/generated/fonts/include']
+genPath += [cwd + '/Src/generated/gui_generated/include']
+genPath += [cwd + '/Src/generated/images/include']
+genPath += [cwd + '/Src/generated/texts/include']
+group = group + DefineGroup('TouchGFX_generated', genSrc, depend = [''], CPPPATH = genPath)
+
+# add TouchGFX resource
+resSrc = Glob('./Src/generated/images/src/*/*.cpp')
+group = group + DefineGroup('TouchGFX_resource', resSrc, depend = [''])
+
+# add TouchGFX gui
+guiSrc = Glob('./Src/gui/src/*/*.cpp')
+guiPath = [cwd + '/Src/gui/include']
+group = group + DefineGroup('TouchGFX_gui', guiSrc, depend = [''], CPPPATH = guiPath)
+
+Return('group')
+
+
